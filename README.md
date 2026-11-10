@@ -203,9 +203,9 @@ Pull request (develop)     Push to develop           Push tag v*
 ### Pull from GHCR
 
 ```bash
-docker pull ghcr.io/Lunar-Rails/nodeguard-remote-signer:latest
-docker pull ghcr.io/Lunar-Rails/nodeguard-remote-signer:develop
-docker pull ghcr.io/Lunar-Rails/nodeguard-remote-signer:v1.2.3
+docker pull ghcr.io/lunar-rails/nodeguard-remote-signer:latest
+docker pull ghcr.io/lunar-rails/nodeguard-remote-signer:develop
+docker pull ghcr.io/lunar-rails/nodeguard-remote-signer:v1.2.3
 ```
 
 ### Push to ECR for Lambda deployment
