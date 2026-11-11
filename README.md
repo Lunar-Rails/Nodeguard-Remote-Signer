@@ -208,6 +208,14 @@ docker pull ghcr.io/lunar-rails/nodeguard-remote-signer:develop
 docker pull ghcr.io/lunar-rails/nodeguard-remote-signer:v1.2.3
 ```
 
+**Note for macOS with ARM (Apple Silicon):** If you're on an ARM-based Mac and need to pull the AMD64 image, add the `--platform` flag:
+
+```bash
+docker pull --platform linux/amd64 ghcr.io/lunar-rails/nodeguard-remote-signer:latest
+docker pull --platform linux/amd64 ghcr.io/lunar-rails/nodeguard-remote-signer:develop
+docker pull --platform linux/amd64 ghcr.io/lunar-rails/nodeguard-remote-signer:v1.2.3
+```
+
 ### Push to ECR for Lambda deployment
 
 The image is consumed by an AWS Lambda function. To deploy it to your own AWS account, pull from GHCR, tag for ECR, and push.
@@ -223,14 +231,20 @@ aws ecr get-login-password --region <region> | \
 aws ecr create-repository --repository-name nodeguardremotesigner --region <region>
 
 # Pull from GHCR
-docker pull ghcr.io/Lunar-Rails/nodeguard-remote-signer:latest
+# For macOS with ARM (Apple Silicon), add: --platform linux/amd64
+docker pull ghcr.io/lunar-rails/nodeguard-remote-signer:latest
+# or
+docker pull --platform linux/amd64 ghcr.io/lunar-rails/nodeguard-remote-signer:latest
 
 # Tag for ECR
-docker tag ghcr.io/Lunar-Rails/nodeguard-remote-signer:latest \
+docker tag ghcr.io/lunar-rails/nodeguard-remote-signer:latest \
   <account-id>.dkr.ecr.<region>.amazonaws.com/nodeguardremotesigner:latest
 
 # Push to ECR
+# For macOS with ARM (Apple Silicon), add: --platform linux/amd64
 docker push <account-id>.dkr.ecr.<region>.amazonaws.com/nodeguardremotesigner:latest
+# or
+docker push --platform linux/amd64 <account-id>.dkr.ecr.<region>.amazonaws.com/nodeguardremotesigner:latest
 
 # Update the Lambda function
 aws lambda update-function-code \
