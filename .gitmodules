@@ -1,0 +1,4 @@
+[submodule "vendor/nspark"]
+	path = vendor/nspark
+	url = https://github.com/Lunar-Rails/nspark.git
+	branch = main
