@@ -15,6 +15,10 @@ public static class EncryptCommand
         string mnemonicString;
         if (seedFile != null)
         {
+            if (seedFile.Contains(".."))
+            {
+                throw new ArgumentException("Invalid file path");
+            }
             mnemonicString = (await File.ReadAllTextAsync(seedFile)).Trim();
         }
         else if (Console.IsInputRedirected)
