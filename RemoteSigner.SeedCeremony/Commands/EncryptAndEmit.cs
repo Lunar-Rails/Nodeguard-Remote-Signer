@@ -42,6 +42,10 @@ public static class EncryptAndEmit
 
         if (outPath != null)
         {
+            if (outPath.Contains(".."))
+            {
+                throw new ArgumentException("Invalid file path");
+            }
             await File.WriteAllTextAsync(outPath, manifest.ToJson());
             Console.Error.WriteLine($"Manifest written to {outPath}");
         }

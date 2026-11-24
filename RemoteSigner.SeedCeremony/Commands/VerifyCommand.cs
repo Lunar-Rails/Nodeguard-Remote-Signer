@@ -14,6 +14,10 @@ public static class VerifyCommand
     public static async Task<int> Run(Options options)
     {
         var inPath = options.Require("--in");
+        if (inPath == null || inPath.Contains(".."))
+        {
+            throw new ArgumentException("Invalid file path");
+        }
 
         var sparkAccountFlag = options.Get("--spark-account");
         var sparkAccount = -1;
